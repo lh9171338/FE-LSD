@@ -1,0 +1,10 @@
+opencv-python
+matplotlib
+pillow
+numpy
+argparse
+yacs
+tqdm
+sklearn
+tensorboardX
+timm

@@ -1,0 +1,74 @@
+# General configurations
+gpu: 0
+seed: 0
+config_path: ''
+config_file: ''
+arch: 'FE-HAWP'
+
+# Dataset configurations
+dataset_path: 'dataset'
+dataset_name: 'FE-Wireframe'
+image_size: [512, 512]
+heatmap_size: [128, 128]
+mean: [0.43031373, 0.40718431, 0.38698431]
+std: [0.08735294, 0.08676078, 0.09109412]
+
+# Train configurations
+log_path: 'log'
+num_workers: 4
+lr: 0.0004
+weight_decay: 0.0001
+step_size: 25
+num_epochs: 30
+last_epoch: -1
+train_batch_size: 4
+test_batch_size: 1
+print_freq: 50
+save_freq: 1
+loss_weights: {
+  'loss_md': 1.0,  # angle regression
+  'loss_dis': 1.0,  # dis   regression
+  'loss_res': 1.0,  # residual regression
+  'loss_joff': 0.25,  # joff  regression
+  'loss_jloc': 8.0,  # jloc  classification
+  'loss_pos': 1.0,  # pos   classification
+  'loss_neg': 1.0  # neg   classification
+}
+
+# test configurations
+output_path: 'output'
+figure_path: 'figure'
+save_image: False
+with_clear: False
+save_line: False
+evaluate: False
+score_thresh: 0.97
+
+# Network configurations
+model_path: 'model'
+model_name: 'FE-HAWP_FE-Wireframe.pkl'
+
+# Backbone
+depth: 4
+num_stacks: 2
+num_blocks: 1
+inplanes: 64
+num_feats: 256
+head_size: [3, 1, 1, 2, 2]
+
+# HAFM
+dis_th: 5
+ang_th: 0.1
+n_stc_posl: 300
+n_stc_negl: 40
+
+# Detector
+n_dyn_junc: 300
+junc_thresh: 0.008
+n_dyn_posl: 300
+n_dyn_negl: 300
+n_pts0: 32
+n_pts1: 8
+dim_loi: 128
+dim_fc: 1024
+use_residual: True

@@ -1,0 +1,72 @@
+# General configurations
+gpu: 0
+seed: 0
+config_path: ''
+config_file: ''
+arch: 'FE-ULSD'
+
+# Dataset configurations
+dataset_path: 'dataset'
+dataset_name: 'FE-Wireframe'
+image_size: [512, 512]
+heatmap_size: [128, 128]
+mean: [0.43031373, 0.40718431, 0.38698431]
+std: [0.08735294, 0.08676078, 0.09109412]
+n_stc_posl: 300
+n_stc_negl: 40
+
+# Train configurations
+log_path: 'log'
+num_workers: 4
+lr: 0.0004
+weight_decay: 0.0001
+step_size: 25
+num_epochs: 30
+last_epoch: -1
+train_batch_size: 4
+test_batch_size: 1
+print_freq: 50
+save_freq: 1
+loss_weights: {
+  'loss_lmap': 0.5,  # lmap classification
+  'loss_joff': 0.25,  # joff regression
+  'loss_jloc': 8.0,  # jloc classification
+  'loss_coff': 0.25,  # coff regression
+  'loss_cloc': 8.0,  # cloc classification
+  'loss_eoff': 1.0,  # eoff regression
+  'loss_pos': 1.0,  # pos classification
+  'loss_neg': 1.0  # neg classification
+}
+
+# test configurations
+output_path: 'output'
+figure_path: 'figure'
+save_image: False
+with_clear: False
+save_line: False
+evaluate: False
+score_thresh: 0.9
+
+# Network configurations
+model_path: 'model'
+model_name: 'FE-ULSD_FE-Wireframe.pkl'
+
+# Backbone
+depth: 4
+num_stacks: 2
+num_blocks: 1
+inplanes: 64
+num_feats: 256
+head_size: [1, 2, 2, 2, 2, 4]
+
+# Detector
+nms_size: 3
+n_dyn_junc: 300
+n_dyn_line: 5000
+junc_thresh: 0.008
+line_thresh: 0.0
+n_dyn_posl: 300
+n_dyn_negl: 300
+n_pts: 32
+dim_loi: 128
+dim_fc: 1024
