@@ -5,7 +5,7 @@ This repository contains the official PyTorch implementation of the paper: [Even
 ## Introduction
 
 ## Network Architecture
-<p align="center"><img width="600" src="figure/Network.png"/></p>
+<p align="center"><img width="800" src="figure/Network.png"/></p>
     
 ## Results
 
@@ -85,7 +85,6 @@ This repository contains the official PyTorch implementation of the paper: [Even
     <img src="figure/Qualitative-mixed.png"/>
 </p> 
 
-
 ## Requirements
 
 * python3
@@ -111,27 +110,27 @@ python setup.py build_ext --inplace
 
 ## Quickstart with the pretrained model
 * There are pretrained models in [Google drive](). Please download them and put in the **model/** folder.
-* Put your test data in the **dataset/** folder and generate the `test.json` file
-```
-python image2json.py --dataset_name <DATASET_NAME>
-```
+* Put your test data in the **dataset/** folder and generate the `test.json` file.
+	```
+	python image2json.py --dataset_name <DATASET_NAME>
+	```
 
-The file structure is as follows:
-```
-|-- dataset
-    |-- events
-        |-- 000001.npz
-        |-- ...
-    |-- images-blur
-        |-- 000001.png
-        |-- ...
-    |-- test.json
-```
+* The file structure is as follows:
+	```
+	|-- dataset
+	    |-- events
+		|-- 000001.npz
+		|-- ...
+	    |-- images-blur
+		|-- 000001.png
+		|-- ...
+	    |-- test.json
+	```
 
-* The results are saved in the **output/** folder.
-```shell
-python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image
-```
+* Test with the pretrained model. The results are saved in the **output/** folder.
+	```shell
+	python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image
+	```
 
 ## Training & Testing
 
@@ -139,11 +138,11 @@ python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_N
 
 * Download the dataset from [Google Drive]().
 * Unzip the dataset to the **dataset/** folder.
-* Convert event streams into synchronous frames with Event Spike Tensor (EST) representation.
-```shell
-python event2frame.py --dataset_name <DATASET_NAME> --representation EST
-ln -s events-EST-10 events
-```
+* Convert event streams into synchronous frames using Event Spike Tensor (EST) representation.
+	```
+	python event2frame.py --dataset_name <DATASET_NAME> --representation EST
+	ln -s events-EST-10 events
+	```
 
 ### Train
 
