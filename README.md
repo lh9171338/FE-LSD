@@ -161,13 +161,15 @@ This repository contains the official PyTorch implementation of the paper: [Even
 </table>
 </html>
 
-### Qualitative Comparisons
+* Qualitative Comparisons
 
 <p align="center">
-    <img src="figure/Qualitative-mixed.png"/>
+    <img  width="800" src="figure/FE-Wireframe-result.jpg"/>
 </p> 
 
 ### FE-WHU Dataset
+
+* Quantitative Comparisons
 
 <html>
 <table align="center">
@@ -317,6 +319,17 @@ This repository contains the official PyTorch implementation of the paper: [Even
 </table>
 </html>
 
+* Qualitative Comparisons
+
+<p align="center">
+    <img  width="800" src="figure/FE-WHU-result.jpg"/>
+</p> 
+
+### Real Data
+
+<p align="center">
+    <img src="figure/library.gif"/><br/>Left: HAWP, right: FE-HAWP
+</p> 
 
 ## Requirements
 
@@ -344,26 +357,26 @@ python setup.py build_ext --inplace
 ## Quickstart with the pretrained model
 * There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq) and [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth). Please download them and put in the **model/** folder.
 * Put your test data in the **dataset/** folder and generate the `test.json` file.
-	```
-	python image2json.py --dataset_name <DATASET_NAME>
-	```
+```
+python image2json.py --dataset_name <DATASET_NAME>
+```
 
 * The file structure is as follows:
-	```
-	|-- dataset
-	    |-- events
-		|-- 000001.npz
-		|-- ...
-	    |-- images-blur
-		|-- 000001.png
-		|-- ...
-	    |-- test.json
-	```
+```
+|-- dataset
+    |-- events
+	|-- 000001.npz
+	|-- ...
+    |-- images-blur
+	|-- 000001.png
+	|-- ...
+    |-- test.json
+```
 
 * Test with the pretrained model. The results are saved in the **output/** folder.
-	```shell
-	python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image
-	```
+```shell
+python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image
+```
 
 ## Training & Testing
 
@@ -372,10 +385,10 @@ python setup.py build_ext --inplace
 * Download the dataset from [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth).
 * Unzip the dataset to the **dataset/** folder.
 * Convert event streams into synchronous frames using Event Spike Tensor (EST) representation.
-	```
-	python event2frame.py --dataset_name <DATASET_NAME> --representation EST
-	ln -s events-EST-10 events
-	```
+```
+python event2frame.py --dataset_name <DATASET_NAME> --representation EST
+ln -s events-EST-10 events
+```
 
 ### Train
 
