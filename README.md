@@ -109,7 +109,7 @@ python setup.py build_ext --inplace
 ```
 
 ## Quickstart with the pretrained model
-* There are pretrained models in [Google drive](). Please download them and put in the **model/** folder.
+* There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq). Please download them and put in the **model/** folder.
 * Put your test data in the **dataset/** folder and generate the `test.json` file.
 	```
 	python image2json.py --dataset_name <DATASET_NAME>
