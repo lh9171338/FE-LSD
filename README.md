@@ -109,7 +109,7 @@ python setup.py build_ext --inplace
 ```
 
 ## Quickstart with the pretrained model
-* There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq). Please download them and put in the **model/** folder.
+* There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq) and [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth). Please download them and put in the **model/** folder.
 * Put your test data in the **dataset/** folder and generate the `test.json` file.
 	```
 	python image2json.py --dataset_name <DATASET_NAME>
@@ -136,7 +136,7 @@ python setup.py build_ext --inplace
 
 ### Data Preparation
 
-* Download the dataset from [Google Drive]().
+* Download the dataset from [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth).
 * Unzip the dataset to the **dataset/** folder.
 * Convert event streams into synchronous frames using Event Spike Tensor (EST) representation.
 	```
