@@ -17,13 +17,13 @@ This repository contains the official PyTorch implementation of the paper: [Even
 <table align="center">
 	<tr style = "font-size:10px">
 		<td align="center">Method</td>
-		<td align="center">sAP$^{5}$</td>
-		<td align="center">sAP$^{10}$</td>
-		<td align="center">sAP$^{15}$</td>
+		<td align="center">sAP<sup>5</sup></td>
+		<td align="center">sAP<sup>10</sup></td>
+		<td align="center">sAP<sup>15</sup></td>
 		<td align="center">msAP</td>
-		<td align="center">mAP$^{J}$</td>
-		<td align="center">AP$^{H}$</td>
-		<td align="center">F$^{H}$</td>
+		<td align="center">mAP<sup>J</sup></td>
+		<td align="center">AP<sup>H</sup></td>
+		<td align="center">F<sup>H</sup></td>
 		<td align="center">FPS</td>
 	</tr>
 	<tr style = "font-size:10px">
@@ -175,13 +175,13 @@ This repository contains the official PyTorch implementation of the paper: [Even
 <table align="center">
 	<tr style = "font-size:10px">
 		<td align="center">Method</td>
-		<td align="center">sAP$^{5}$</td>
-		<td align="center">sAP$^{10}$</td>
-		<td align="center">sAP$^{15}$</td>
+		<td align="center">sAP<sup>5</sup></td>
+		<td align="center">sAP<sup>10</sup></td>
+		<td align="center">sAP<sup>15</sup></td>
 		<td align="center">msAP</td>
-		<td align="center">mAP$^{J}$</td>
-		<td align="center">AP$^{H}$</td>
-		<td align="center">F$^{H}$</td>
+		<td align="center">mAP<sup>J</sup></td>
+		<td align="center">AP<sup>H</sup></td>
+		<td align="center">F<sup>H</sup></td>
 		<td align="center">FPS</td>
 	</tr>
 	<tr style = "font-size:10px">
