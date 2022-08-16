@@ -1,15 +1,15 @@
-[<img height="23" src="https://github.com/lh9171338/Outline/blob/master/icon.jpg"/>](https://github.com/lh9171338/Outline) FE-LSD
+[<img height="23" src="https://raw.githubusercontent.com/lh9171338/Outline/master/icon.jpg"/>](https://github.com/lh9171338/Outline) FE-LSD
 ===
 This repository contains the official PyTorch implementation of the paper: [Event-enhanced Line Segment Detection in Motion-blurred Images]().
 
-## Introduction
+# Introduction
 
-## Network Architecture
+# Network Architecture
 <p align="center"><img width="800" src="figure/Network.png"/></p>
     
-## Results
+# Results
 
-### FE-Wireframe Dataset
+## FE-Wireframe Dataset
 
 * Quantitative Comparisons
 
@@ -167,7 +167,7 @@ This repository contains the official PyTorch implementation of the paper: [Even
     <img  width="800" src="figure/FE-Wireframe-result.jpg"/>
 </p> 
 
-### FE-WHU Dataset
+## FE-WHU Dataset
 
 * Quantitative Comparisons
 
@@ -325,21 +325,20 @@ This repository contains the official PyTorch implementation of the paper: [Even
     <img  width="800" src="figure/FE-WHU-result.jpg"/>
 </p> 
 
-### Real Data
+## Real Data
 
 <p align="center">
     <img src="figure/library.gif"/><br/>Left: HAWP, right: FE-HAWP
 </p> 
 
-## Requirements
+# Requirements
 
-* python3
 * torch==1.6.0
 * torchvision==0.7.0
 * CUDA==10.1
 * opencv, matplotlib, pillow, numpy, argparse, yacs, tqdm, sklearn, tensorboardX, timm
 
-## Step-by-step installation
+# Step-by-step installation
 ```shell
 conda create --name FE-LSD python=3.8
 conda activate FE-LSD
@@ -354,7 +353,7 @@ conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch
 python setup.py build_ext --inplace
 ```
 
-## Quickstart with the pretrained model
+# Quickstart with the pretrained model
 * There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq) and [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth). Please download them and put in the **model/** folder.
 * Put your test data in the **dataset/** folder and generate the `test.json` file.
 ```
@@ -378,9 +377,9 @@ python image2json.py --dataset_name <DATASET_NAME>
 python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image
 ```
 
-## Training & Testing
+# Training & Testing
 
-### Data Preparation
+## Data Preparation
 
 * Download the dataset from [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth).
 * Unzip the dataset to the **dataset/** folder.
@@ -390,21 +389,21 @@ python event2frame.py --dataset_name <DATASET_NAME> --representation EST
 ln -s events-EST-10 events
 ```
 
-### Train
+## Train
 
 ```shell
 python train.py --arch FE-HAWP --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> [--gpu <GPU_ID>] # FE-HAWP
 python train.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> [--gpu <GPU_ID>] # FE-ULSD
 ```
 
-### Test
+## Test
 
 ```shell
 python test.py --arch FE-HAWP --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image --with_clear [--gpu <GPU_ID>] # FE-HAWP
 python test.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image --with_clear [--gpu <GPU_ID>] # FE-ULSD
 ```
 
-### Evaluation
+## Evaluation
 
 ```shell
 python test.py --arch FE-HAWP --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --evaluate [--gpu <GPU_ID>] # FE-HAWP
