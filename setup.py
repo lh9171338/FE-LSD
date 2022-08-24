@@ -47,7 +47,7 @@ def get_extensions():
 
     ext_modules = [
         extension(
-            "network._C",
+            "network.FE_HAWP._C",
             sources,
             include_dirs=include_dirs,
             define_macros=define_macros,

@@ -352,6 +352,9 @@ pip install -r requirements.txt
 conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch
 
 python setup.py build_ext --inplace
+# For higher version pytorch with GTX 3090 (Ti), in network/FE_HAWP/csrc/cuda/linesegment.cu
+# commit l4 '#include <THC/THC.h>' 
+# update l134: THCudaCheck(cudaGetLastError()) with AT_CUDA_CHECK(cudaGetLastError())
 ```
 
 ## Quickstart with the pretrained model

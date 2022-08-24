@@ -4,3 +4,5 @@ model/*
 /.idea/
 /*/__pycache__/
 /*/*/__pycache__/
+/network/_C.cpython-38-x86_64-linux-gnu.so
+/network/FE_HAWP/_C.cpython-38-x86_64-linux-gnu.so
