@@ -1,8 +1,9 @@
-model/*
+/.idea/
+/.vscode/
+/build/
+/model/
 /output/
 /log/
-/.idea/
 /*/__pycache__/
 /*/*/__pycache__/
-/network/_C.cpython*.so
-/network/FE_HAWP/_C.cpython*.so
+/network/FE_HAWP/_C*

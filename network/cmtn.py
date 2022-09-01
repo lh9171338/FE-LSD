@@ -99,7 +99,7 @@ class IRFFN(nn.Module):
             nn.BatchNorm2d(hidden_dim)
         )
         self.conv2 = nn.Sequential(
-            nn.Conv2d(hidden_dim, hidden_dim, 3, padding=1, groups=dim),
+            nn.Conv2d(hidden_dim, hidden_dim, 3, padding=1, groups=hidden_dim),
             nn.GELU(),
             nn.BatchNorm2d(hidden_dim)
         )
@@ -110,7 +110,6 @@ class IRFFN(nn.Module):
 
     def forward(self, x):
         x = self.conv1(x)
-        # x = self.conv2(x)
         x = x + self.conv2(x)
         x = self.conv3(x)
 

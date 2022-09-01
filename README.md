@@ -1,12 +1,16 @@
 [<img height="23" src="https://raw.githubusercontent.com/lh9171338/Outline/master/icon.jpg"/>](https://github.com/lh9171338/Outline) FE-LSD
-===
+===========================================================================================================================================
+
 This repository contains the official PyTorch implementation of the paper: [Event-enhanced Line Segment Detection in Motion-blurred Images]().
 
 # Introduction
 
+[FE-LSD]() is an event-enhanced line segment detection framework for motion-blurred images with thoughtful information fusion of both modalities and advanced wireframe parsing network. Extensive results on both synthetic and realistic datasets demonstrate the effectiveness of the proposed method for handling motion blurs in line segment detection.
+
 # Network Architecture
+
 <p align="center"><img width="800" src="figure/Network.png"/></p>
-    
+
 # Results
 
 ## FE-Wireframe Dataset
@@ -165,7 +169,7 @@ This repository contains the official PyTorch implementation of the paper: [Even
 
 <p align="center">
     <img  width="800" src="figure/FE-Wireframe-result.jpg"/>
-</p> 
+</p>
 
 ## FE-WHU Dataset
 
@@ -295,26 +299,48 @@ This repository contains the official PyTorch implementation of the paper: [Even
 		<td align="center">3.3</td>
 	</tr>
 	<tr style = "font-size:10px">
-		<td align="center">FE-HAWP (Ours)</td>
-		<td align="center"><b>47.5</b></td>
-		<td align="center"><b>53.0</b></td>
-		<td align="center"><b>55.4</b></td>
-		<td align="center"><b>52.0</b></td>
+		<td align="center">FE-HAWP</td>
+		<td align="center">47.5</td>
+		<td align="center">53.0</td>
+		<td align="center">55.4</td>
+		<td align="center">52.0</td>
 		<td align="center">50.9</td>
-		<td align="center"><b>74.0</b></td>
-		<td align="center"><b>73.9</b></td>
+		<td align="center">74.0</td>
+		<td align="center">73.9</td>
 		<td align="center">12.9</td>
 	</tr>
 	<tr style = "font-size:10px">
-		<td align="center">FE-ULSD (Ours)</td>
+		<td align="center">FE-ULSD</td>
 		<td align="center">47.3</td>
 		<td align="center">52.9</td>
 		<td align="center">55.2</td>
 		<td align="center">51.8</td>
-		<td align="center"><b>52.2</b></td>
+		<td align="center">52.2</td>
 		<td align="center">72.9</td>
 		<td align="center">73.7</td>
 		<td align="center">12.9</td>
+	</tr>
+	<tr style = "font-size:10px">
+		<td align="center">FE-HAWP (Fine-tuned)</td>
+		<td align="center"><b>59.8</b></td>
+		<td align="center"><b>64.3</b></td>
+		<td align="center"><b>66.1</b></td>
+		<td align="center"><b>63.4</b></td>
+		<td align="center">60.3</td>
+		<td align="center"><b>81.9</b></td>
+		<td align="center"><b>80.3</b></td>
+		<td align="center">13.1</td>
+	</tr>
+	<tr style = "font-size:10px">
+		<td align="center">FE-ULSD (Fine-tuned)</td>
+		<td align="center">59.2</td>
+		<td align="center">63.9</td>
+		<td align="center">65.8</td>
+		<td align="center">63.0</td>
+		<td align="center"><b>60.9</b></td>
+		<td align="center">79.1</td>
+		<td align="center">77.6</td>
+		<td align="center">13.4</td>
 	</tr>
 </table>
 </html>
@@ -323,22 +349,23 @@ This repository contains the official PyTorch implementation of the paper: [Even
 
 <p align="center">
     <img  width="800" src="figure/FE-WHU-result.jpg"/>
-</p> 
+</p>
 
 ## Real Data
 
 <p align="center">
     <img src="figure/library.gif"/><br/>Left: HAWP, right: FE-HAWP
-</p> 
+</p>
 
 # Requirements
 
-* torch==1.6.0
-* torchvision==0.7.0
-* CUDA==10.1
-* opencv, matplotlib, pillow, numpy, argparse, yacs, tqdm, sklearn, tensorboardX, timm
+* torch>=1.6.0
+* torchvision>=0.7.0
+* CUDA>=10.1
+* lh_tool, matplotlib, numpy, opencv_python, Pillow, scikit_learn, scipy, setuptools, tensorboardX, timm, torch, torchvision, tqdm, yacs,
 
 # Step-by-step installation
+
 ```shell
 conda create --name FE-LSD python=3.8
 conda activate FE-LSD
@@ -348,22 +375,21 @@ git clone https://github.com/lh9171338/FE-LSD.git
 cd FE-LSD
 
 pip install -r requirements.txt
-conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch
 
 python setup.py build_ext --inplace
-# For higher version pytorch with GTX 3090 (Ti), in network/FE_HAWP/csrc/cuda/linesegment.cu
-# commit l4 '#include <THC/THC.h>' 
-# update l134: THCudaCheck(cudaGetLastError()) with AT_CUDA_CHECK(cudaGetLastError())
 ```
 
 # Quickstart with the pretrained model
+
 * There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq) and [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth). Please download them and put in the **model/** folder.
 * Put your test data in the **dataset/** folder and generate the `test.json` file.
+
 ```
 python image2json.py --dataset_name <DATASET_NAME>
 ```
 
 * The file structure is as follows:
+
 ```
 |-- dataset
     |-- events
@@ -376,6 +402,7 @@ python image2json.py --dataset_name <DATASET_NAME>
 ```
 
 * Test with the pretrained model. The results are saved in the **output/** folder.
+
 ```shell
 python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --save_image
 ```
@@ -387,6 +414,7 @@ python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_N
 * Download the dataset from [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth).
 * Unzip the dataset to the **dataset/** folder.
 * Convert event streams into synchronous frames using Event Spike Tensor (EST) representation.
+
 ```
 python event2frame.py --dataset_name <DATASET_NAME> --representation EST
 ln -s events-EST-10 events
@@ -408,7 +436,17 @@ python test.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_
 
 ## Evaluation
 
+To evaluate the mAPJ, sAP, and FPS
+
 ```shell
 python test.py --arch FE-HAWP --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --evaluate [--gpu <GPU_ID>] # FE-HAWP
 python test.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --evaluate [--gpu <GPU_ID>] # FE-ULSD
+```
+
+To evaluate AP$H$, MATLAB is required
+
+```shell
+cd metric
+python eval_APH.py --arch FE-HAWP --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> # FE-HAWP
+python eval_APH.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> # FE-ULSD
 ```

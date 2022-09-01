@@ -8,6 +8,7 @@ def parse():
 
     parser.add_argument('-g', '--gpu', type=int, help='gpu id')
     parser.add_argument('-a', '--arch', type=str, default='FE-HAWP', choices=['FE-HAWP', 'FE-ULSD'], help='model arch')
+    parser.add_argument('-p', '--pretrained_model_name', type=str, help='pretrained model name')
     parser.add_argument('-l', '--last_epoch', type=int, help='last epoch')
     parser.add_argument('-b', '--train_batch_size', type=int, help='training batch size')
     parser.add_argument('-d', '--dataset_name', type=str, help='dataset name')
@@ -33,6 +34,8 @@ def parse():
     cfg = CfgNode.load_cfg(open(yaml_file))
     cfg.merge_from_list(args_list)
 
+    if cfg.model_name == '':
+        cfg.model_name = f'{cfg.arch}_{cfg.dataset_name}.pkl'
     cfg.log_path = f'{cfg.log_path}/{os.path.splitext(cfg.model_name)[0]}'
     cfg.dataset_path = os.path.join(cfg.dataset_path, cfg.dataset_name)
     cfg.output_path = os.path.join(cfg.output_path, cfg.dataset_name + f'-{os.path.splitext(cfg.model_name)[0]}')

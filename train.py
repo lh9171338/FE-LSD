@@ -157,6 +157,15 @@ if __name__ == '__main__':
 
     # Load model
     model = build_model(cfg).to(device)
+    if cfg.pretrained_model_name != '':
+        pretrained_model_filename = os.path.join(cfg.model_path, cfg.pretrained_model_name)
+        print(f'Loading pretrained model: {pretrained_model_filename}')
+        checkpoint = torch.load(pretrained_model_filename, map_location=device)
+        if 'model' in checkpoint.keys():
+            state_dict = checkpoint['model']
+        else:
+            state_dict = checkpoint
+        model.load_state_dict(state_dict)
 
     # Load dataset
     train_dataset = Dataset(cfg, split='train')

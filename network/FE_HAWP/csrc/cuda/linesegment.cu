@@ -1,7 +1,6 @@
 #include <ATen/ATen.h>
 #include <ATen/cuda/CUDAContext.h>
 
-#include <THC/THC.h>
 #include <THC/THCDeviceUtils.cuh>
 
 #include <vector>
@@ -131,7 +130,7 @@ std::tuple<at::Tensor, at::Tensor, at::Tensor> lsencode_cuda(
             label_data,
             tmap_data);
 
-    THCudaCheck(cudaGetLastError());
+    AT_CUDA_CHECK(cudaGetLastError());
 
     return std::make_tuple(map, label, tmap);
 }

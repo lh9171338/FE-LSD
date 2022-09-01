@@ -49,7 +49,8 @@ score_thresh: 0.9
 
 # Network configurations
 model_path: 'model'
-model_name: 'FE-ULSD_FE-Wireframe.pkl'
+model_name: ''
+pretrained_model_name: ''
 
 # Backbone
 depth: 4
