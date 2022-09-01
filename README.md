@@ -436,14 +436,14 @@ python test.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_
 
 ## Evaluation
 
-To evaluate the mAPJ, sAP, and FPS
+To evaluate the mAP<sup>J</sup>, sAP, and FPS
 
 ```shell
 python test.py --arch FE-HAWP --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --evaluate [--gpu <GPU_ID>] # FE-HAWP
 python test.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> --evaluate [--gpu <GPU_ID>] # FE-ULSD
 ```
 
-To evaluate AP$H$, MATLAB is required
+To evaluate AP<sup>H</sup> and F<sup>H</sup>, MATLAB is required
 
 ```shell
 cd metric
