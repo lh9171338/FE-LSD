@@ -141,26 +141,26 @@ This repository contains the official PyTorch implementation of the paper: [Even
 		<td align="center">3.9</td>
 	</tr>
 	<tr style = "font-size:10px">
-		<td align="center">FE-HAWP (Ours)</td>
-		<td align="center">49.0</td>
-		<td align="center">54.3</td>
-		<td align="center">56.4</td>
-		<td align="center">53.2</td>
+		<td align="center">FE-HAWP </td>
+		<td align="center">48.7</td>
+		<td align="center">53.9</td>
+		<td align="center">56.2</td>
+		<td align="center">53.0</td>
 		<td align="center">49.4</td>
-		<td align="center"><b>77.0</b></td>
-		<td align="center"><b>75.5</b></td>
-		<td align="center">12.4</td>
+		<td align="center"><b>77.1</b></td>
+		<td align="center">75.1</td>
+		<td align="center">13.1</td>
 	</tr>
 	<tr style = "font-size:10px">
-		<td align="center">FE-ULSD (Ours)</td>
-		<td align="center"><b>50.7</b></td>
-		<td align="center"><b>56.2</b></td>
-		<td align="center"><b>58.6</b></td>
-		<td align="center"><b>55.2</b></td>
+		<td align="center">FE-ULSD </td>
+		<td align="center"><b>50.9</b></td>
+		<td align="center"><b>56.5</b></td>
+		<td align="center"><b>58.8</b></td>
+		<td align="center"><b>55.4</b></td>
 		<td align="center"><b>51.1</b></td>
-		<td align="center">74.2</td>
-		<td align="center">75.1</td>
-		<td align="center">13.4</td>
+		<td align="center">75.3</td>
+		<td align="center"><b>75.9</b></td>
+		<td align="center">13.9</td>
 	</tr>
 </table>
 </html>
@@ -323,24 +323,24 @@ This repository contains the official PyTorch implementation of the paper: [Even
 	<tr style = "font-size:10px">
 		<td align="center">FE-HAWP (Fine-tuned)</td>
 		<td align="center"><b>59.8</b></td>
-		<td align="center"><b>64.3</b></td>
-		<td align="center"><b>66.1</b></td>
-		<td align="center"><b>63.4</b></td>
-		<td align="center">60.3</td>
-		<td align="center"><b>81.9</b></td>
-		<td align="center"><b>80.3</b></td>
-		<td align="center">13.1</td>
+		<td align="center"><b>64.2</b></td>
+		<td align="center"><b>65.9</b></td>
+		<td align="center"><b>63.3</b></td>
+		<td align="center">60.1</td>
+		<td align="center"><b>82.0</b></td>
+		<td align="center"><b>79.7</b></td>
+		<td align="center">13.3</td>
 	</tr>
 	<tr style = "font-size:10px">
 		<td align="center">FE-ULSD (Fine-tuned)</td>
-		<td align="center">59.2</td>
-		<td align="center">63.9</td>
-		<td align="center">65.8</td>
-		<td align="center">63.0</td>
-		<td align="center"><b>60.9</b></td>
-		<td align="center">79.1</td>
-		<td align="center">77.6</td>
-		<td align="center">13.4</td>
+		<td align="center">59.3</td>
+		<td align="center">63.8</td>
+		<td align="center">65.7</td>
+		<td align="center">62.9</td>
+		<td align="center"><b>61.0</b></td>
+		<td align="center">77.8</td>
+		<td align="center">77.1</td>
+		<td align="center">13.9</td>
 	</tr>
 </table>
 </html>
@@ -384,7 +384,7 @@ python setup.py build_ext --inplace
 * There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq) and [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth). Please download them and put in the **model/** folder.
 * Put your test data in the **dataset/** folder and generate the `test.json` file.
 
-```
+```shell
 python image2json.py --dataset_name <DATASET_NAME>
 ```
 
@@ -415,7 +415,7 @@ python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_N
 * Unzip the dataset to the **dataset/** folder.
 * Convert event streams into synchronous frames using Event Spike Tensor (EST) representation.
 
-```
+```shell
 python event2frame.py --dataset_name <DATASET_NAME> --representation EST
 ln -s events-EST-10 events
 ```

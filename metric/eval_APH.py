@@ -93,7 +93,7 @@ def eval_APH(gt_file, pred_file, image_path, cfg):
     x = np.arange(0, 1, 0.01) * rcs[-1]
     y = f(x)
 
-    figure = plot_pr_curve(x, y, title='AP${^{H}}$', legend=[f'{name}={FH:.1f}'])
+    figure = plot_pr_curve(x, y, title='AP${^{H}}$', legend=[f'{name}={APH:.1f}'])
     figure.savefig(os.path.join(figure_path, f'APH-{name}.pdf'), format='pdf', bbox_inches='tight')
     sio.savemat(os.path.join(figure_path, f'APH-{name}.mat'), {'rcs': x, 'prs': y, 'AP': APH})
     plt.show()

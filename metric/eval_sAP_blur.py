@@ -6,7 +6,7 @@ import json
 import time
 import matplotlib.pyplot as plt
 from config.cfg import parse
-from metric.eval_metric import calc_msAP, calc_sAP, plot_pr_curve
+from metric.eval_metric import calc_msAP
 
 
 def eval_sAP(gt_file, pred_file, lim, cfg=None):
