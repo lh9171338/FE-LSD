@@ -1,15 +1,15 @@
 [<img height="23" src="https://raw.githubusercontent.com/lh9171338/Outline/master/icon.jpg"/>](https://github.com/lh9171338/Outline) FE-LSD
 ===========================================================================================================================================
 
-This repository contains the official PyTorch implementation of the paper: [Event-enhanced Line Segment Detection in Motion-blurred Images]().
+This repository contains the official PyTorch implementation of the paper: [Detecting Line Segments in Motion-blurred Images with Events](https://levenberg.github.io/FE-LSD/).
 
 # Introduction
 
-[FE-LSD]() is an event-enhanced line segment detection framework for motion-blurred images with thoughtful information fusion of both modalities and advanced wireframe parsing network. Extensive results on both synthetic and realistic datasets demonstrate the effectiveness of the proposed method for handling motion blurs in line segment detection.
+[FE-LSD](https://levenberg.github.io/FE-LSD/) is an event-enhanced line segment detection framework for motion-blurred images with thoughtful information fusion of both modalities and advanced wireframe parsing network. Extensive results on both synthetic and realistic datasets demonstrate the effectiveness of the proposed method for handling motion blurs in line segment detection.
 
 # Network Architecture
 
-<p align="center"><img width="800" src="figure/Network.png"/></p>
+<p align="center"><img width="800" src="figure/FE-LSD.png"/></p>
 
 # Results
 
@@ -171,7 +171,7 @@ This repository contains the official PyTorch implementation of the paper: [Even
     <img  width="800" src="figure/FE-Wireframe-result.jpg"/>
 </p>
 
-## FE-WHU Dataset
+## FE-Blurframe Dataset
 
 * Quantitative Comparisons
 
@@ -351,11 +351,11 @@ This repository contains the official PyTorch implementation of the paper: [Even
     <img  width="800" src="figure/FE-WHU-result.jpg"/>
 </p>
 
-## Real Data
+<!-- ## Real Data
 
 <p align="center">
     <img src="figure/library.gif"/><br/>Left: HAWP, right: FE-HAWP
-</p>
+</p> -->
 
 # Requirements
 
