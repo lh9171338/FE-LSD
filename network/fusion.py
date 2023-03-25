@@ -6,16 +6,16 @@ from network.cmtn import CMTB
 class ResNetBottleneck(nn.Module):
     expansion = 2
 
-    def __init__(self, inplanes, planes=None, stride=1, downsample=None):
+    def __init__(self, inplanes, planes=None, stride=1, groups=1, downsample=None):
         super().__init__()
         planes = planes or inplanes // self.expansion
 
         self.bn1 = nn.BatchNorm2d(inplanes)
-        self.conv1 = nn.Conv2d(inplanes, planes, 1)
+        self.conv1 = nn.Conv2d(inplanes, planes, 1, groups=groups)
         self.bn2 = nn.BatchNorm2d(planes)
-        self.conv2 = nn.Conv2d(planes, planes, 3, stride=stride, padding=1)
+        self.conv2 = nn.Conv2d(planes, planes, 3, stride=stride, padding=1, groups=groups)
         self.bn3 = nn.BatchNorm2d(planes)
-        self.conv3 = nn.Conv2d(planes, planes * self.expansion, 1)
+        self.conv3 = nn.Conv2d(planes, planes * self.expansion, 1, groups=groups)
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample
 
@@ -97,7 +97,8 @@ class AddFusionModule(nn.Module):
     def __init__(self, **kwargs):
         super().__init__()
 
-    def forward(self, x1, x2):
+    def forward(self, x):
+        x1, x2 = torch.chunk(x, 2, dim=1)
         out = x1 + x2
         return out
 
@@ -108,7 +109,8 @@ class CAFusionModule(nn.Module):
 
         self.ca = nn.ModuleList([ChannelAttention(inplanes) for _ in range(2)])
 
-    def forward(self, x1, x2):
+    def forward(self, x):
+        x1, x2 = torch.chunk(x, 2, dim=1)
         x1 = x1 * self.ca[0](x1)
         x2 = x2 * self.ca[1](x2)
         out = x1 + x2
@@ -121,7 +123,8 @@ class SAFusionModule(nn.Module):
 
         self.sa = nn.ModuleList([SpatialAttention() for _ in range(2)])
 
-    def forward(self, x1, x2):
+    def forward(self, x):
+        x1, x2 = torch.chunk(x, 2, dim=1)
         x1 = x1 * self.sa[0](x1)
         x2 = x2 * self.sa[1](x2)
         out = x1 + x2
@@ -134,7 +137,8 @@ class CBAMFusionModule(nn.Module):
 
         self.cbam = nn.ModuleList([CBAM(inplanes) for _ in range(2)])
 
-    def forward(self, x1, x2):
+    def forward(self, x):
+        x1, x2 = torch.chunk(x, 2, dim=1)
         x1 = self.cbam[0](x1)
         x2 = self.cbam[1](x2)
         out = x1 + x2
@@ -148,8 +152,8 @@ class TransformerFusionModule(nn.Module):
         self.conv = nn.Conv2d(inplanes * 2, inplanes, 1)
         self.block = CMTB(dim=inplanes, sr_ratio=sr_ratio, size=size, depth=1)
 
-    def forward(self, x1, x2):
-        out = self.conv(torch.cat([x1, x2], dim=1))
+    def forward(self, x):
+        out = self.conv(x)
         out = self.block(out)
         return out
 
@@ -158,8 +162,8 @@ class IdentityModulationModule(nn.Module):
     def __init__(self, **kwargs):
         super().__init__()
 
-    def forward(self, x1, x2):
-        return x1, x2
+    def forward(self, x):
+        return x
 
 
 class CAModulationModule(nn.Module):
@@ -170,14 +174,15 @@ class CAModulationModule(nn.Module):
         self.res = nn.ModuleList([ResNetBottleneck(inplanes) for _ in range(2)])
         self.conv = nn.Conv2d(inplanes * 2, inplanes, 1)
 
-    def forward(self, x1, x2):
-        x = self.conv(torch.cat([x1, x2], dim=1))
+    def forward(self, x):
+        x1, x2 = torch.chunk(x, 2, dim=1)
+        x = self.conv(x)
         fused_x1 = x1 + x2 * self.ca[1](x)
         fused_x2 = x2 + x1 * self.ca[0](x)
 
         x1 = x1 + self.res[0](fused_x1)
         x2 = x2 + self.res[1](fused_x2)
-        return x1, x2
+        return torch.cat([x1, x2], dim=1)
 
 
 class SAModulationModule(nn.Module):
@@ -188,14 +193,15 @@ class SAModulationModule(nn.Module):
         self.res = nn.ModuleList([ResNetBottleneck(inplanes) for _ in range(2)])
         self.conv = nn.Conv2d(inplanes * 2, inplanes, 1)
 
-    def forward(self, x1, x2):
-        x = self.conv(torch.cat([x1, x2], dim=1))
+    def forward(self, x):
+        x1, x2 = torch.chunk(x, 2, dim=1)
+        x = self.conv(x)
         fused_x1 = x1 + x2 * self.sa[1](x)
         fused_x2 = x2 + x1 * self.sa[0](x)
 
         x1 = x1 + self.res[0](fused_x1)
         x2 = x2 + self.res[1](fused_x2)
-        return x1, x2
+        return torch.cat([x1, x2], dim=1)
 
 
 class CASAModulationModule(nn.Module):
@@ -206,11 +212,12 @@ class CASAModulationModule(nn.Module):
         self.res = nn.ModuleList([ResNetBottleneck(inplanes) for _ in range(2)])
         self.conv = nn.Conv2d(inplanes * 2, inplanes, 1)
 
-    def forward(self, x1, x2):
-        x = self.conv(torch.cat([x1, x2], dim=1))
+    def forward(self, x):
+        x1, x2 = torch.chunk(x, 2, dim=1)
+        x = self.conv(x)
         fused_x1 = x1 + x2 * self.casa[1](x)
         fused_x2 = x2 + x1 * self.casa[0](x)
 
         x1 = x1 + self.res[0](fused_x1)
         x2 = x2 + self.res[1](fused_x2)
-        return x1, x2
+        return torch.cat([x1, x2], dim=1)

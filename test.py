@@ -6,6 +6,7 @@ import torch
 import tqdm
 import matplotlib.pyplot as plt
 import torch.utils.data as Data
+from torch.cuda.amp import autocast as autocast
 from network.build import build_model
 from network.dataset import Dataset
 from config.cfg import parse
@@ -23,6 +24,31 @@ def to_device(data, device):
         return data
     if isinstance(data, list):
         return [to_device(d, device) for d in data]
+
+
+def convert_model(model, state_dict):
+    new_state_dict = model.state_dict()
+    for key, value in state_dict.items():
+        try:
+            C = len(value)
+        except:
+            continue
+        if 'shallow_res1' in key:
+            new_key = key.replace('shallow_res1', 'shallow_res')
+            new_state_dict[new_key][:C] = value
+        elif 'shallow_res2' in key:
+            new_key = key.replace('shallow_res2', 'shallow_res')
+            new_state_dict[new_key][C:] = value
+        elif 'encoders1' in key:
+            new_key = key.replace('encoders1', 'encoders')
+            new_state_dict[new_key][:C] = value
+        elif 'encoders2' in key:
+            new_key = key.replace('encoders2', 'encoders')
+            new_state_dict[new_key][C:] = value
+        else:
+            new_state_dict[key] = value
+
+    return new_state_dict
 
 
 def save_lines(image, lines, filename, plot=False):
@@ -57,7 +83,8 @@ def test(model, loader, cfg, device):
     for images, annotations in tqdm.tqdm(loader, desc='test: '):
         images, annotations = images.to(device), to_device(annotations, device)
 
-        outputs = model(images, annotations)
+        with autocast():
+            outputs = model(images, annotations)
 
         for output in outputs:
             # Save image
@@ -124,12 +151,16 @@ if __name__ == '__main__':
         state_dict = checkpoint['model']
     else:
         state_dict = checkpoint
-    model.load_state_dict(state_dict)
+    try:
+        model.load_state_dict(state_dict, strict=True)
+    except:
+        state_dict = convert_model(model, state_dict)
+        model.load_state_dict(state_dict, strict=True)
 
     # Load dataset
     dataset = Dataset(cfg, split='test')
-    loader = Data.DataLoader(dataset=dataset, batch_size=cfg.test_batch_size,
-                             num_workers=cfg.num_workers, shuffle=False, collate_fn=dataset.collate)
+    loader = Data.DataLoader(dataset=dataset, batch_size=cfg.test_batch_size, num_workers=cfg.num_workers,
+                             shuffle=False, collate_fn=dataset.collate, pin_memory=True)
 
     # Test network
     test(model, loader, cfg, device)

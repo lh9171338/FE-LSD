@@ -149,7 +149,7 @@ This repository contains the official PyTorch implementation of the paper: [Dete
 		<td align="center">49.4</td>
 		<td align="center"><b>77.1</b></td>
 		<td align="center">75.1</td>
-		<td align="center">13.1</td>
+		<td align="center">22.2</td>
 	</tr>
 	<tr style = "font-size:10px">
 		<td align="center">FE-ULSD </td>
@@ -160,7 +160,7 @@ This repository contains the official PyTorch implementation of the paper: [Dete
 		<td align="center"><b>51.1</b></td>
 		<td align="center">75.3</td>
 		<td align="center"><b>75.9</b></td>
-		<td align="center">13.9</td>
+		<td align="center">24.2</td>
 	</tr>
 </table>
 </html>
@@ -329,7 +329,7 @@ This repository contains the official PyTorch implementation of the paper: [Dete
 		<td align="center">60.1</td>
 		<td align="center"><b>82.0</b></td>
 		<td align="center"><b>79.7</b></td>
-		<td align="center">13.3</td>
+		<td align="center">21.1</td>
 	</tr>
 	<tr style = "font-size:10px">
 		<td align="center">FE-ULSD (Fine-tuned)</td>
@@ -340,7 +340,7 @@ This repository contains the official PyTorch implementation of the paper: [Dete
 		<td align="center"><b>61.0</b></td>
 		<td align="center">77.8</td>
 		<td align="center">77.1</td>
-		<td align="center">13.9</td>
+		<td align="center">21.6</td>
 	</tr>
 </table>
 </html>

@@ -138,7 +138,6 @@ class Dataset(Data.Dataset):
             image = np.asarray(Image.open(self.image_file_list[index]).convert('RGB'))
             with np.load(self.event_file_list[index]) as events:
                 event = events['event'].astype(np.float32)
-
             if reminder == 1:
                 image = image[:, ::-1, :]
                 event = event[:, ::-1, :]
