@@ -307,7 +307,7 @@ This repository contains the official PyTorch implementation of the paper: [Dete
 		<td align="center">50.9</td>
 		<td align="center">74.0</td>
 		<td align="center">73.9</td>
-		<td align="center">12.9</td>
+		<td align="center">19.3</td>
 	</tr>
 	<tr style = "font-size:10px">
 		<td align="center">FE-ULSD</td>
@@ -318,7 +318,7 @@ This repository contains the official PyTorch implementation of the paper: [Dete
 		<td align="center">52.2</td>
 		<td align="center">72.9</td>
 		<td align="center">73.7</td>
-		<td align="center">12.9</td>
+		<td align="center">19.7</td>
 	</tr>
 	<tr style = "font-size:10px">
 		<td align="center">FE-HAWP (Fine-tuned)</td>
