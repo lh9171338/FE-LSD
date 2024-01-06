@@ -450,3 +450,16 @@ cd metric
 python eval_APH.py --arch FE-HAWP --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> # FE-HAWP
 python eval_APH.py --arch FE-ULSD --dataset_name <DATASET_NAME> --model_name <MODEL_NAME> # FE-ULSD
 ```
+
+# Citation
+
+```
+@ARTICLE{10323537,
+  author={Yu, Huai and Li, Hao and Yang, Wen and Yu, Lei and Xia, Gui-Song},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Detecting Line Segments in Motion-Blurred Images With Events}, 
+  year={2023},
+  pages={1-16},
+  doi={10.1109/TPAMI.2023.3334877}
+}
+```
