@@ -417,6 +417,13 @@ python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_N
 
 ```shell
 python event2frame.py --dataset_name <DATASET_NAME> --representation EST
+
+# for FE-Wireframe dataset
+python event2frame.py --dataset_name FE-Wireframe --representation EST
+
+# for FE-Blurframe dataset
+python event2frame.py --dataset_name FE-Blurframe --representation EST -s 0.5
+
 ln -s events-EST-10 events
 ```
 
