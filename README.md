@@ -1,6 +1,10 @@
 [<img height="23" src="https://raw.githubusercontent.com/lh9171338/Outline/master/icon.jpg"/>](https://github.com/lh9171338/Outline) FE-LSD
 ===========================================================================================================================================
 
+<p align="center">
+    🏠 <a href="https://levenberg.github.io/FE-LSD">Homepage</a>&nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/collections/lh9171338/fe-lsd-68c2c8adfd2e6a5f59908dbd">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp📑 <a href="https://arxiv.org/abs/2211.07365">Paper</a>
+</p>
+
 This repository contains the official PyTorch implementation of the paper: [Detecting Line Segments in Motion-blurred Images with Events](https://levenberg.github.io/FE-LSD/).
 
 # Introduction
@@ -381,7 +385,7 @@ python setup.py build_ext --inplace
 
 # Quickstart with the pretrained model
 
-* There are pretrained models in [Google drive](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq?usp=sharing) and [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth). Please download them and put in the **model/** folder.
+* There are pretrained models in [[☁️ Google drive]](https://drive.google.com/drive/folders/1WGSftMoUgdAFjYjJtMP-JQN0CXiMmKXq?usp=sharing), [[☁️ Baiduyun]](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth) or [[🤗 Hugging Face]](https://huggingface.co/collections/lh9171338/fe-lsd-68c2c8adfd2e6a5f59908dbd). Please download them and put in the **model/** folder.
 * Put your test data in the **dataset/** folder and generate the `test.json` file.
 
 ```shell
@@ -411,7 +415,7 @@ python test.py --arch <ARCH> --dataset_name <DATASET_NAME> --model_name <MODEL_N
 
 ## Data Preparation
 
-* Download the dataset from [Baiduyun](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth).
+* Download the dataset from [[☁️ Baiduyun]](https://pan.baidu.com/s/19nWYeWQMn9qbvLErHsOyYw?pwd=spth) or [[🤗 Hugging Face]](https://huggingface.co/collections/lh9171338/fe-lsd-68c2c8adfd2e6a5f59908dbd).
 * Unzip the dataset to the **dataset/** folder.
 * Convert event streams into synchronous frames using Event Spike Tensor (EST) representation.
 
